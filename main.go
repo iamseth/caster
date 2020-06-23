@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/eduncan911/podcast"
@@ -19,7 +20,9 @@ func main() {
 	p.AddImage(c.Image)
 	p.AddSummary(c.Description)
 	for _, c := range c.Categories {
-		p.AddCategory(c, nil)
+		main := strings.Split(c, "/")[0]
+		sub := strings.Split(c, "/")[0:]
+		p.AddCategory(main, sub)
 	}
 	if c.Explicit {
 		p.IExplicit = "Yes"
